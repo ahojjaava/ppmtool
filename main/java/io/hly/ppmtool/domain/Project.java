@@ -1,21 +1,33 @@
 package io.hly.ppmtool.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 
 import java.util.Date;
-
 @Entity
 public class Project {
     @Id
     @GeneratedValue
     private long id;
+    @NotBlank(message = "Project Name is required.")
     private String projectName;
+    @NotBlank(message = "Project Identifier is required.")
+    @Size(min = 4, max = 5, message = "Please use 4 to 5 characters.")
+    @Column(updatable = false, unique = true)
     private String projectIdentifier;
+    @NotBlank(message = "Description is required.")
     private String description;
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date start_date;
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date end_date;
 
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date create_date;
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date update_date;
 
     public Project() {
