@@ -9,7 +9,9 @@ import org.springframework.validation.FieldError;
 import java.util.HashMap;
 import java.util.Map;
 
+//Refactor Project controller
 @Service
+// map the key field and the error message thrown by JPA
 public class MapValidationErrorService {
     public ResponseEntity<?>MapValidationService(BindingResult result){
         if(result.hasErrors()){
